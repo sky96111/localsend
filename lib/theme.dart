@@ -18,33 +18,44 @@ final _darkInputBorder = OutlineInputBorder(
 
 ThemeData getTheme(Brightness brightness) {
   return ThemeData(
+    fontFamily: 'Microsoft YaHei UI',
     brightness: brightness,
     primarySwatch: Colors.teal,
     useMaterial3: true,
-    scaffoldBackgroundColor: brightness == Brightness.light ? Colors.white : Colors.grey.shade900,
+    scaffoldBackgroundColor:
+        brightness == Brightness.light ? Colors.white : Colors.grey.shade900,
     navigationBarTheme: brightness == Brightness.dark
         ? NavigationBarThemeData(
             indicatorColor: Colors.teal,
-            iconTheme: MaterialStateProperty.all(const IconThemeData(color: Colors.white)),
+            iconTheme: MaterialStateProperty.all(
+                const IconThemeData(color: Colors.white)),
           )
         : null,
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: brightness == Brightness.light ? _lightInputColor : _darkInputColor,
-      border: brightness == Brightness.light ? _lightInputBorder : _darkInputBorder,
-      focusedBorder: brightness == Brightness.light ? _lightInputBorder : _darkInputBorder,
-      enabledBorder: brightness == Brightness.light ? _lightInputBorder : _darkInputBorder,
+      fillColor:
+          brightness == Brightness.light ? _lightInputColor : _darkInputColor,
+      border:
+          brightness == Brightness.light ? _lightInputBorder : _darkInputBorder,
+      focusedBorder:
+          brightness == Brightness.light ? _lightInputBorder : _darkInputBorder,
+      enabledBorder:
+          brightness == Brightness.light ? _lightInputBorder : _darkInputBorder,
       contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         foregroundColor: brightness == Brightness.dark ? Colors.white : null,
-        padding: checkPlatformIsDesktop() ? const EdgeInsets.all(16) : const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: checkPlatformIsDesktop()
+            ? const EdgeInsets.all(16)
+            : const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        padding: checkPlatformIsDesktop() ? const EdgeInsets.all(16) : const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: checkPlatformIsDesktop()
+            ? const EdgeInsets.all(16)
+            : const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),
     ),
   );
@@ -54,7 +65,9 @@ void updateSystemOverlayStyle(BuildContext context) {
   final brightness = Theme.of(context).brightness;
   final style = SystemUiOverlayStyle(
     // statusBarColor: Colors.white, // android
-    statusBarIconBrightness: brightness == Brightness.light ? Brightness.dark : Brightness.light, // android
+    statusBarIconBrightness: brightness == Brightness.light
+        ? Brightness.dark
+        : Brightness.light, // android
     statusBarBrightness: brightness, // iOS
   );
   SystemChrome.setSystemUIOverlayStyle(style);
@@ -63,7 +76,8 @@ void updateSystemOverlayStyle(BuildContext context) {
 extension ThemeDataExt on ThemeData {
   /// This is the actual [cardColor] being used.
   Color get cardColorWithElevation {
-    return ElevationOverlay.applySurfaceTint(cardColor, colorScheme.surfaceTint, 1);
+    return ElevationOverlay.applySurfaceTint(
+        cardColor, colorScheme.surfaceTint, 1);
   }
 }
 
